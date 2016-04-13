@@ -88,16 +88,24 @@ if(isset($_GET['index'])) {
                     <th>Sub Total</th>
                 </tr>
                 <?php
-                $cart = unserialize($_SESSION['cart']);
-                $s = 0;
-                $movies=[];
-                foreach($cart as $it){
-                    $movies[] = $it->movieID;
+                if(isset($_SESSION['cart'])){
+                    $cart = unserialize($_SESSION['cart']);
+                }else{
+                    $cart = [];
                 }
-                $result = mysqli_query($con, 'select * from movies where movieID in ('.implode(",",$movies).')');
-                $movieID = [];
-                while($movie = mysqli_fetch_object($result)){
-                    $movieID[$movie->movieID] = $movie;
+                if(isset($_SESSION['cart'])){
+                    $s = 0;
+                    if(count($cart)>0){
+                        $movies=[];
+                        foreach($cart as $it){
+                            $movies[] = $it->movieID;
+                        }
+                        $result = mysqli_query($con, 'select * from movies where movieID in ('.implode(",",$movies).')');
+                        $movieID = [];
+                        while($movie = mysqli_fetch_object($result)){
+                            $movieID[$movie->movieID] = $movie;
+                        }
+                    }
                 }
                 for($i=0; $i<count($cart); $i++) {
                     $s += $movieID[$cart[$i]->movieID]->price * $cart[$i]->quantity;
