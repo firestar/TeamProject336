@@ -1,0 +1,22 @@
+*{
+    padding:0px;
+    margin:0px;
+}
+body{
+    background:#ccc;
+}
+.item_wrapper{
+    margin:0px auto;
+    width:900px;
+    background:#fff;
+    padding:10px;
+    border-radius:6px;
+}
+.item_wrapper td{
+    padding-bottom:2px;
+    padding-left:20px;
+    border-bottom:1px solid #ccc;
+}
+.cart_wrapper{
+    
+}
