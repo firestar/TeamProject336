@@ -78,7 +78,7 @@ if(isset($_GET['index'])) {
     </head>
     <body>
         <div class="cart_wrapper">
-            <table cellpadding="2" cellspacing="2" border="1">
+            <table width="100%">
                 <tr>
                     <th>Option</th>
                     <th>Id</th>
@@ -106,16 +106,16 @@ if(isset($_GET['index'])) {
                         <td><a href="cart.php?index=<?php echo $i; ?>&action=delete" onClick="return confirm('Are you sure you want to do that?')">Delete</a></td>
                         <td><?php echo $cart[$i]->movieID; ?></td>
                         <td><?php echo $movieID[$cart[$i]->movieID]->title; ?></td>
-                        <td><?php echo $movieID[$cart[$i]->movieID]->price; ?></td>
+                        <td>$<?php echo $movieID[$cart[$i]->movieID]->price; ?></td>
                         <td><div id="q<?=$i;?>" class="quantity" ic="<?=$i;?>"><?php echo $cart[$i]->quantity; ?></div></td>
-                        <td><?php echo $movieID[$cart[$i]->movieID]->price * $cart[$i]->quantity; ?></td>
+                        <td>$<?php echo $movieID[$cart[$i]->movieID]->price * $cart[$i]->quantity; ?></td>
                     </tr>
                     <?php 
                 } 
                 ?>
                 <tr>
-                    <td colspan="4" align="right">Sum</td>
-                    <td align="left"><?php echo $s; ?></td>
+                    <td colspan="5" align="right">Total Sum</td>
+                    <td align="left">$<?php echo $s; ?></td>
                 </tr>
             </table>
             <br>
@@ -137,6 +137,7 @@ if(isset($_GET['index'])) {
                     if(open[$(this).attr('ic')]!=true){
                         open[$(this).attr('ic')]=true;
                         $(this).html("<input type='text' value='"+$(this).html()+"' /><input type='submit' value='update' onclick=\"updateQuantity('"+$(this).attr('ic')+"');\"/>");
+                        $('.quantity[ic="'+$(this).attr('ic')+'"] input[type="text"]').select();
                     }
                 });
             </script>

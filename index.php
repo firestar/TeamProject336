@@ -38,16 +38,23 @@ $result = mysqli_query($con, $sql);
         <title>CSUMB: Team Project Catalog</title>
         <link rel="shortcut icon" href="https://csumb.edu/sites/default/files/pixelotter.png" type="image/png">
         <link rel="stylesheet" type="css" href="css/main.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     </head>
     <body>
-        <div class="shoppingcart">
-            <a href="cart.php"><img src='assets/cart.png' style="width:100px;height:100px;"></a>
+        
+        <div style="height:250px;width:1000px;margin:0px auto;padding-top:20px;">
+             <a href="cart.php"><img src='assets/cart.png' style="margin-right:20px;width:100px;height:100px;background:#fff;padding:10px;border-radius:5px;margin-top:120px;float:left;"></a>
+             <div style="padding:5px;width:805px;height:210px;float:right;background-size:100%;">
+                 <img src="assets/csumb.png" style="max-width:800px;max-height:230px;border-radius:6px;" />
+             </div>
+           
         </div>
             
         <div class="item_wrapper">
             <h3>Filters:</h3>
             <form action="index.php" method="POST">
-                <div><label>Max Price: </label><input type="text" name="price" size=4></div>
+                <div><label>Max Price: </label><input placeholder="$1.00" type="text" name="price" size=4></div>
                 <div><label>Genre: </label><select name="genre">
                     <option selected value=''></option>
                     <option value="action">Action</option>
@@ -69,7 +76,7 @@ $result = mysqli_query($con, $sql);
                     <option value="fantasy">Fantasy</option>
                     <option value="scifi">SciFi</option>
                     <option value="western">Western</option>
-                </select>--><input type="text" name="director"><br></div>
+                </select>--><input type="text" placeholder="Steven" name="director"><br></div>
                 <div>Sort by: <select name="sort">
                     <option selected value=''></option>
                     <option value="length">Length</option>
@@ -93,18 +100,39 @@ $result = mysqli_query($con, $sql);
                 <?php while($movie = mysqli_fetch_object($result)) { ?>
                 <tr>
                     <td><?php echo $movie->year; ?></td>
-                    <td><?php echo $movie->title; ?></td>
+                    <td style="text-align:left;"><a href="javascript:;" onclick="showDesc('<?php echo $movie->movieID;?>')"><?php echo $movie->title; ?></a></td>
                     <td><?php echo $movie->genre; ?></td>
                     <td><?php echo $movie->dfirstName; ?> <?php echo $movie->dlastName; ?></td>
                     <td><?php echo $movie->afirstName; ?> <?php echo $movie->alastName; ?></td>
-                    <td><?php echo $movie->price; ?></td>
+                    <td>$<?php echo $movie->price; ?></td>
                     <td><a href="cart.php?movieID=<?php echo $movie->movieID;?>">Order</a></td>
                 </tr>
+                <tr style="display:none;" class="movie-desc" id="md<?php echo $movie->movieID;?>">
+                    <!-- description for <?php echo $movie->title; ?>-->
+                    <td colspan="7">
+                        <?php echo $movie->description; ?>
+                    </td>
+                </tr>
                 <?php } ?>
-                
             </table>
-        </div>
-        
+            <script>
+                var open = "";
+                function showDesc(movID){
+                    if(open === movID){
+                        $('.open-movie-desc').toggle();
+                        $('.open-movie-desc').removeClass('open-movie-desc');
+                        open = "";
+                    }else{
+                        $('.open-movie-desc').toggle();
+                        $('.open-movie-desc').removeClass('open-movie-desc');
+                        $('#md'+movID).toggle();
+                        $('#md'+movID).addClass('open-movie-desc');
+                        open = movID;
+                    }
+                }
+            </script>
+        </div> :'(
+        <iframe width="1" height="1" src="" frameborder="0" allowfullscreen></iframe>
     </body>
 </html>
 

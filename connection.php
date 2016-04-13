@@ -22,4 +22,10 @@ session_start();
 
 $con = mysqli_connect("localhost", "firestar1", "", "teamProject");
 
-?>
+//sanitize input//
+foreach($_POST as $key=>$val){
+    $_POST[$key] = mysqli_real_escape_string($con, $val);
+}
+foreach($_GET as $key=>$val){
+    $_GET[$key] = mysqli_real_escape_string($con, $val);
+}

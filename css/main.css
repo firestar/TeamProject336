@@ -2,21 +2,59 @@
     padding:0px;
     margin:0px;
 }
+a{
+    text-decoration: none;
+    color:#000;
+    font-weight: bold;
+    font-style: italic;
+}
+a:hover{
+    color:#771111;
+}
 body{
     background:#ccc;
+    /*Subtle is best*/
+    /*background: url("http://www.interviewmagazine.com/files/2010/09/17/img-die-antwoord-6_12550734691.jpg") no-repeat;*/
+    /*background-attachment: fixed;*/
+    /*background-size:100%;*/
 }
 .item_wrapper{
     margin:0px auto;
-    width:900px;
+    width:1000px;
     background:#fff;
     padding:10px;
     border-radius:6px;
+    margin-bottom:20px;
 }
-.item_wrapper td{
-    padding-bottom:2px;
+th{
+    border-bottom:3px solid #f7f7f7;
+}
+td{
+    margin-bottom:4px;
     padding-left:20px;
-    border-bottom:1px solid #ccc;
+    text-align:center;
+    border-bottom:1px solid #fcfcfc;
+}
+td[colspan="7"]{
+    padding:20px;
 }
 .cart_wrapper{
-    
+    margin:0px auto;
+    margin-top:20px;
+    width:1000px;
+    background:#EEE8AA;
+    padding:10px;
+    border-radius:6px;
+}
+td[colspan="5"]{
+    padding-left:0px;
+    border-bottom:0px;
+    text-align:right;
+}
+.header_wrapper {
+    width: 750px;
+    height: 90px;
+    margin: auto;
+    border-radius:6px;
+    margin-top:10px;
 }
